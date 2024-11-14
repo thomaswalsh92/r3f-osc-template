@@ -1,5 +1,4 @@
-//Gets values from any UPD emitting device and packages them up into events the client can subscribe to.
-//Server does not interpret any data only creates appropriate address, sends and parses starts and end events for example from MIDI notes.
+//gets values from any UPD emitting device/software and packages them up into events the client can subscribe to
 
 const osc = require("osc");
 const express = require("express");
@@ -41,7 +40,7 @@ const getIPAddresses = () => {
   return ipAddresses;
 };
 
-// Bind to a UDP socket to listen for incoming OSC events.
+//bind to a UDP socket to listen for incoming OSC events
 var udpPort = new osc.UDPPort({
   localAddress: "127.0.0.1",
   localPort: 2346,
@@ -55,9 +54,10 @@ udpPort.on("ready", () => {
   });
 });
 
-//send OSC messages to client
+//example OSC messages to client
 udpPort.on("message", ({ address, args }) => {
-  //example send on Note on message
+  //example send on note-on message
+  //ignore note-off
   if (address === "/kick" && args[0] !== 0) {
     io.emit("kick-on", { velocity: args[0] });
   }

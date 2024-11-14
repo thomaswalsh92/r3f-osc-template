@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Mesh } from "three";
-//import { GLTF } from "three-stdlib";
 
 type GLTFResult = GLTF & {
   nodes: {

@@ -1,10 +1,9 @@
-//LIBS
 import { useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
 import * as io from "socket.io-client";
-import { Models } from "./Models";
 import { AmbientLight, BoxGeometry, Mesh, PointLight, Vector3 } from "three";
 import { OrbitControls } from "@react-three/drei";
+import { Models } from "./Models";
 
 const socket = io.connect("http://localhost:3001");
 socket.connect();
@@ -26,7 +25,6 @@ export const AppInner = () => {
 
   socket.on("hat-contour", ({ value }) => {
     //console.log("synth received, value: ", value);
-
     hatContour = Math.pow(value, 0.2);
   });
 
